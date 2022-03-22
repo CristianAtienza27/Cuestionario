@@ -8,6 +8,8 @@ import com.cristianatienzapruebafase1.app.entity.User;
 public interface UserService {
 
   public Iterable<User> findAll();
+  
+  public Iterable<User> findByEnabledFilterByName(User user);
 
   public Page<User> findAll(Pageable pageable);
 

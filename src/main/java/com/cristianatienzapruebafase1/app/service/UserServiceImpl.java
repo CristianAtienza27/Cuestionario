@@ -1,6 +1,7 @@
 package com.cristianatienzapruebafase1.app.service;
 
 import java.util.Optional;
+import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -19,7 +20,6 @@ public class UserServiceImpl implements UserService {
   @Transactional(readOnly = true)
   public Iterable<User> findAll() {
     return userRepository.findAll();
-    //le
   }
 
   @Override
@@ -43,7 +43,14 @@ public class UserServiceImpl implements UserService {
   @Override
   @Transactional
   public void delete(Long id) {
-    userRepository.deleteById(id);;
+    userRepository.deleteById(id);
+  }
+
+  @Override
+  @Transactional(readOnly = true)
+  public Iterable<User> findByEnabledFilterByName(User user) {
+    return userRepository.findByEnabled().stream().filter(us -> us.getName() == user.getName())
+        .collect(Collectors.toList());
   }
 
 
