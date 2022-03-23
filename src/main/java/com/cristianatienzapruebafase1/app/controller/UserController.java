@@ -1,9 +1,6 @@
 package com.cristianatienzapruebafase1.app.controller;
 
-import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +12,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import com.cristianatienzapruebafase1.app.dto.UserNameDTO;
 import com.cristianatienzapruebafase1.app.entity.User;
 import com.cristianatienzapruebafase1.app.service.UserService;
 
@@ -30,18 +28,51 @@ public class UserController {
   public ResponseEntity<?> create(@RequestBody User user) {
     return ResponseEntity.status(HttpStatus.CREATED).body(userService.save(user));
   }
+  
 
-  // Read an User
+//  // Read an User
+//  @GetMapping("/{id}")
+//  public ResponseEntity<?> read(@PathVariable(value = "id") Long userId) {
+//    Optional<User> oUser = userService.findById(userId);
+//
+//    if (!oUser.isPresent()) {
+//      return ResponseEntity.notFound().build();
+//    }
+//
+//    return ResponseEntity.ok(oUser);
+//  }
+  
+  // Read an User and return UserDTO
+//  @GetMapping("/{id}")
+//  public ResponseEntity<?> read(@PathVariable(value="id") Long userId){
+//    
+//   Optional<User> user = userService.findById(userId);
+//   
+//   if (!user.isPresent()) {
+//     return ResponseEntity.notFound().build();
+//   }
+//   
+//   return ResponseEntity.ok(userService.transformUsertoUserDTO(user.get()));
+//  }
+  
+  //Read an User and return UserNameDTO
   @GetMapping("/{id}")
-  public ResponseEntity<?> read(@PathVariable(value = "id") Long userId) {
-    Optional<User> oUser = userService.findById(userId);
-
-    if (!oUser.isPresent()) {
-      return ResponseEntity.notFound().build();
-    }
-
-    return ResponseEntity.ok(oUser);
+  public ResponseEntity<?> read(@PathVariable(value="id") Long userId){
+    
+   Optional<User> user = userService.findById(userId);
+   
+   if (!user.isPresent()) {
+     return ResponseEntity.notFound().build();
+   }
+   
+   UserNameDTO userNameDTO = userService.transformUserNametoUserNameDTO(user.get());
+   userNameDTO.setFullname(user.get().getName() + ' ' + user.get().getSurname());
+   
+   return ResponseEntity.ok(userNameDTO);
   }
+  
+  
+  
 
   // Update an User
   @PutMapping("/{id}")
@@ -77,10 +108,24 @@ public class UserController {
   }
 
   // Read all Users
+<<<<<<< Updated upstream
   @GetMapping
   public List<User> readAll() {
 
     return StreamSupport.stream(userService.findAll().spliterator(), false)
         .collect(Collectors.toList());
+=======
+//  @GetMapping
+//  public List<User> readAll() {
+//
+//    return StreamSupport.stream(userService.findAll().spliterator(), false)
+//        .collect(Collectors.toList());
+//  }
+  
+  @GetMapping
+  public Page<User> readAllOrderByName(Pageable pageable){
+    pageable = PageRequest.of(0, 3, Sort.by("name"));
+    return userService.findAll(pageable);
+>>>>>>> Stashed changes
   }
 }
