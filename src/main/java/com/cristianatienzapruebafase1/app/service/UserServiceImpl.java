@@ -1,12 +1,7 @@
 package com.cristianatienzapruebafase1.app.service;
 
-import java.util.Objects;
 import java.util.Optional;
-<<<<<<< Updated upstream
-=======
-import java.util.stream.Collectors;
 import org.modelmapper.ModelMapper;
->>>>>>> Stashed changes
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
