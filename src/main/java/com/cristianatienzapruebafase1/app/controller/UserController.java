@@ -42,12 +42,7 @@ public class UserController {
 
     return ResponseEntity.ok(oUser);
   }
-<<<<<<< Updated upstream
 
-=======
-  
-  
->>>>>>> Stashed changes
   // Update an User
   @PutMapping("/{id}")
   public ResponseEntity<?> update(@RequestBody User userDetails,
