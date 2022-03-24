@@ -1,6 +1,9 @@
 package com.cristianatienzapruebafase1.app.dto;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import com.cristianatienzapruebafase1.app.entity.Permission;
 
 public class RolDTO implements Serializable {
   
@@ -10,15 +13,13 @@ public class RolDTO implements Serializable {
   
   private String name;
   
- 
-  public RolDTO() {
-    super();
-  }
-
-  public RolDTO(Long id, String name) {
+  private List<Permission> permissions = new ArrayList<>();
+  
+  public RolDTO(Long id, String name, List<Permission> permissions) {
     super();
     this.id = id;
     this.name = name;
+    this.permissions = permissions;
   }
 
   public Long getId() {
@@ -36,5 +37,15 @@ public class RolDTO implements Serializable {
   public void setName(String name) {
     this.name = name;
   }
+
+  public List<Permission> getPermissions() {
+    return permissions;
+  }
+
+  public void setPermissions(List<Permission> permissions) {
+    this.permissions = permissions;
+  }
   
+  
+
 }
