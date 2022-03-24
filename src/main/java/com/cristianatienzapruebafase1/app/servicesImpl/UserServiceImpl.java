@@ -1,14 +1,18 @@
 package com.cristianatienzapruebafase1.app.servicesImpl;
 
 import java.util.Optional;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import com.cristianatienzapruebafase1.app.dto.UserDTO;
+import com.cristianatienzapruebafase1.app.dto.UserNameDTO;
 import com.cristianatienzapruebafase1.app.entity.User;
 import com.cristianatienzapruebafase1.app.repository.UserRepository;
 import com.cristianatienzapruebafase1.app.service.UserService;
+
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -63,14 +67,6 @@ public class UserServiceImpl implements UserService {
   @Override
   @Transactional
   public void delete(Long id) {
-<<<<<<< Updated upstream:src/main/java/com/cristianatienzapruebafase1/app/service/UserServiceImpl.java
-    userRepository.deleteById(id);;
-  }
-
-
-=======
     userRepository.deleteById(id);
   }
-
->>>>>>> Stashed changes:src/main/java/com/cristianatienzapruebafase1/app/servicesImpl/UserServiceImpl.java
 }
