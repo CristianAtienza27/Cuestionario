@@ -1,6 +1,7 @@
 package com.cristianatienzapruebafase1.app.servicesImpl;
 
 import java.util.Optional;
+import java.util.stream.Collectors;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -39,7 +40,7 @@ public class UserServiceImpl implements UserService {
   public UserNameDTO transformUserNametoUserNameDTO(User user) {
     return new ModelMapper().map(user, UserNameDTO.class);
   }
-  
+
   @Override
   @Transactional(readOnly = true)
   public Iterable<User> findAll() {
@@ -68,5 +69,12 @@ public class UserServiceImpl implements UserService {
   @Transactional
   public void delete(Long id) {
     userRepository.deleteById(id);
+  }
+
+  @Override
+  public Iterable<User> findAllWithRolWithoutPermissions() {
+    return userRepository.findAll().stream()
+        .filter(user -> user.getRol() != null && user.getRol().getPermissions().isEmpty())
+        .collect(Collectors.toList());
   }
 }

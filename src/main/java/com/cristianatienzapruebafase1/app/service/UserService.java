@@ -18,6 +18,8 @@ public interface UserService {
   public UserNameDTO transformUserNametoUserNameDTO(User user);
 
   public Iterable<User> findAll();
+  
+  public Iterable<User> findAllWithRolWithoutPermissions();
 
   public Page<User> findAll(Pageable pageable);
 

@@ -81,7 +81,9 @@ public class UserController {
   @GetMapping
   public List<User> readAll() {
 
-    return StreamSupport.stream(userService.findAll().spliterator(), false)
+//    return StreamSupport.stream(userService.findAll().spliterator(), false)
+//        .collect(Collectors.toList());
+    return StreamSupport.stream(userService.findAllWithRolWithoutPermissions().spliterator(), false)
         .collect(Collectors.toList());
   }
 }
