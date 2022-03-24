@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "permissions")
@@ -22,9 +23,19 @@ public class Permission implements Serializable{
   
   private String title;
   
+  @JsonIgnore
   @ManyToMany(mappedBy = "permissions")
   private List<Rol> roles = new ArrayList<>();
+  
+  public Permission() {
+    super();
+  }
 
+  public Permission(Long id, String title) {
+    super();
+    this.id = id;
+    this.title = title;
+  }
 
   public Long getId() {
     return id;

@@ -34,7 +34,7 @@ public class Rol implements Serializable{
   private List<Permission> permissions = new ArrayList<>();
   
   @OneToMany(mappedBy="rol", orphanRemoval=true)
-  List<User> users = new ArrayList<>();
+  private List<User> users = new ArrayList<>();
  
   
   public Rol() {

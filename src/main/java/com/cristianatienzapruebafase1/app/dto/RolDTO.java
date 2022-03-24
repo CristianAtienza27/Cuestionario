@@ -13,8 +13,12 @@ public class RolDTO implements Serializable {
   
   private String name;
   
-  private List<Permission> permissions = new ArrayList<>();
+  private List<Permission> permissions;
   
+  public RolDTO() {
+    super();
+  }
+
   public RolDTO(Long id, String name, List<Permission> permissions) {
     super();
     this.id = id;
