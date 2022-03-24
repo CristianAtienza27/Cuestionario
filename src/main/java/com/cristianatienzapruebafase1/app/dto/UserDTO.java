@@ -1,6 +1,7 @@
 package com.cristianatienzapruebafase1.app.dto;
 
 import java.io.Serializable;
+import com.cristianatienzapruebafase1.app.entity.Rol;
 
 public class UserDTO implements Serializable{
   
@@ -15,6 +16,18 @@ public class UserDTO implements Serializable{
   private String email;
 
   private Boolean enabled;
+  
+  private Rol rol;
+
+  public UserDTO(Long id, String name, String surname, String email, Boolean enabled, Rol rol) {
+    super();
+    this.id = id;
+    this.name = name;
+    this.surname = surname;
+    this.email = email;
+    this.enabled = enabled;
+    this.rol = rol;
+  }
 
   public Long getId() {
     return id;
@@ -55,6 +68,16 @@ public class UserDTO implements Serializable{
   public void setEnabled(Boolean enabled) {
     this.enabled = enabled;
   }
+
+  public Rol getRol() {
+    return rol;
+  }
+
+  public void setRol(Rol rol) {
+    this.rol = rol;
+  }
+  
+  
   
   
 }

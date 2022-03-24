@@ -28,6 +28,7 @@ public class UserController {
   // Create an User
   @PostMapping
   public ResponseEntity<?> create(@RequestBody User user) {
+    System.out.println(user.ge);
     return ResponseEntity.status(HttpStatus.CREATED).body(userService.save(user));
   }
 

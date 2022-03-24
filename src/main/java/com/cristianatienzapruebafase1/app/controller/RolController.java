@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.cristianatienzapruebafase1.app.dto.RolDTO;
 import com.cristianatienzapruebafase1.app.entity.Rol;
-import com.cristianatienzapruebafase1.app.entity.User;
 import com.cristianatienzapruebafase1.app.service.RolService;
 
 @RestController

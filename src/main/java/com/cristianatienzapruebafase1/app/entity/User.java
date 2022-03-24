@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -27,14 +29,23 @@ public class User implements Serializable {
   private String email;
 
   private Boolean enabled;
+  
+  @ManyToOne
+  @JoinColumn(name="rol")
+  private Rol rol;
 
-  public User(Long id, String name, String surname, String email, Boolean enabled) {
+  public User() {
+    super();
+  }
+  
+  public User(Long id, String name, String surname, String email, Boolean enabled, Rol rol) {
     super();
     this.id = id;
     this.name = name;
     this.surname = surname;
     this.email = email;
     this.enabled = enabled;
+    this.rol = rol;
   }
 
   public Long getId() {
@@ -76,6 +87,16 @@ public class User implements Serializable {
   public void setEnabled(Boolean enabled) {
     this.enabled = enabled;
   }
+
+  public Rol getRol() {
+    return rol;
+  }
+
+  public void setRol(Rol rol) {
+    this.rol = rol;
+  }
+  
+  
 
 
 }
