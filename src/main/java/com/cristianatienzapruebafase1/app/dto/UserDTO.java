@@ -2,7 +2,9 @@ package com.cristianatienzapruebafase1.app.dto;
 
 import java.io.Serializable;
 import com.cristianatienzapruebafase1.app.entity.Rol;
+import lombok.Data;
 
+@Data
 public class UserDTO implements Serializable{
   
   private static final long serialVersionUID = -825151165681376137L;
@@ -28,56 +30,4 @@ public class UserDTO implements Serializable{
     this.enabled = enabled;
     this.rol = rol;
   }
-
-  public Long getId() {
-    return id;
-  }
-
-  public void setId(Long id) {
-    this.id = id;
-  }
-
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
-
-  public String getSurname() {
-    return surname;
-  }
-
-  public void setSurname(String surname) {
-    this.surname = surname;
-  }
-
-  public String getEmail() {
-    return email;
-  }
-
-  public void setEmail(String email) {
-    this.email = email;
-  }
-
-  public Boolean getEnabled() {
-    return enabled;
-  }
-
-  public void setEnabled(Boolean enabled) {
-    this.enabled = enabled;
-  }
-
-  public Rol getRol() {
-    return rol;
-  }
-
-  public void setRol(Rol rol) {
-    this.rol = rol;
-  }
-  
-  
-  
-  
 }

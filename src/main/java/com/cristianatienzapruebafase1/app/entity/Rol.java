@@ -13,9 +13,12 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Data;
 
 @Entity
 @Table(name="roles")
+@Data
 public class Rol implements Serializable{
 
   private static final long serialVersionUID = 1L;
@@ -33,6 +36,7 @@ public class Rol implements Serializable{
       inverseJoinColumns = @JoinColumn(name = "permissions_id"))
   private List<Permission> permissions = new ArrayList<>();
   
+  @JsonIgnore
   @OneToMany(mappedBy="rol", orphanRemoval=true)
   private List<User> users = new ArrayList<>();
  
@@ -46,30 +50,5 @@ public class Rol implements Serializable{
     this.id = id;
     this.name = name;
     this.permissions = permissions;
-  }
-
-  public Long getId() {
-    return id;
-  }
-
-  public void setId(Long id) {
-    this.id = id;
-  }
-
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
-
-  public List<Permission> getPermissions() {
-    return permissions;
-  }
-
-  public void setPermissions(List<Permission> permissions) {
-    this.permissions = permissions;
   }  
-  
 }

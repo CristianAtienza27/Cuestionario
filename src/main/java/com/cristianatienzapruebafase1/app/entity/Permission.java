@@ -10,9 +10,11 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Data;
 
 @Entity
 @Table(name = "permissions")
+@Data
 public class Permission implements Serializable{
 
   private static final long serialVersionUID = 1L;
@@ -36,31 +38,5 @@ public class Permission implements Serializable{
     this.id = id;
     this.title = title;
   }
-
-  public Long getId() {
-    return id;
-  }
-
-  public void setId(Long id) {
-    this.id = id;
-  }
-
-  public String getTitle() {
-    return title;
-  }
-
-  public void setTitle(String title) {
-    this.title = title;
-  }
-
-  public List<Rol> getRoles() {
-    return roles;
-  }
-
-  public void setRoles(List<Rol> roles) {
-    this.roles = roles;
-  }
-  
-  
   
 }
