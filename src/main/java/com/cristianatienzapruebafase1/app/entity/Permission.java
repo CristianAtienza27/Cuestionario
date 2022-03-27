@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -15,22 +16,27 @@ import lombok.Data;
 @Entity
 @Table(name = "permissions")
 @Data
-public class Permission implements Serializable{
+public class Permission implements Serializable {
 
   private static final long serialVersionUID = 1L;
-  
+
   @Id
-  @GeneratedValue(strategy= GenerationType.IDENTITY)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
-  
+
   private String title;
-  
+
   @JsonIgnore
-  @ManyToMany(mappedBy = "permissions")
+  @ManyToMany(mappedBy = "permissions",fetch=FetchType.EAGER)
   private List<Rol> roles = new ArrayList<>();
-  
+
   public Permission() {
     super();
+  }
+
+  public Permission(String title) {
+    super();
+    this.title = title;
   }
 
   public Permission(Long id, String title) {
@@ -38,5 +44,5 @@ public class Permission implements Serializable{
     this.id = id;
     this.title = title;
   }
-  
+
 }

@@ -5,6 +5,6 @@ import org.springframework.stereotype.Repository;
 import com.cristianatienzapruebafase1.app.entity.Permission;
 
 @Repository
-public interface PermissionRepository extends JpaRepository<Permission, Long>{
+public interface PermissionRepository extends JpaRepository<Permission, Long> {
 
 }

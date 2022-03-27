@@ -7,17 +7,23 @@ import lombok.Data;
 
 @Data
 public class RolDTO implements Serializable {
-  
+
   private static final long serialVersionUID = 1L;
 
   private Long id;
-  
+
   private String name;
-  
+
   private List<Permission> permissions;
-  
+
   public RolDTO() {
     super();
+  }
+
+  public RolDTO(String name, List<Permission> permissions) {
+    super();
+    this.name = name;
+    this.permissions = permissions;
   }
 
   public RolDTO(Long id, String name, List<Permission> permissions) {

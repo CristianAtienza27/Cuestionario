@@ -31,15 +31,24 @@ public class User implements Serializable {
   private String email;
 
   private Boolean enabled;
-  
+
   @ManyToOne
-  @JoinColumn(name="rol")
+  @JoinColumn(name = "rol")
   private Rol rol;
 
   public User() {
     super();
   }
-  
+
+  public User(String name, String surname, String email, Boolean enabled, Rol rol) {
+    super();
+    this.name = name;
+    this.surname = surname;
+    this.email = email;
+    this.enabled = enabled;
+    this.rol = rol;
+  }
+
   public User(Long id, String name, String surname, String email, Boolean enabled, Rol rol) {
     super();
     this.id = id;

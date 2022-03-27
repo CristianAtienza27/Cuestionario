@@ -5,8 +5,8 @@ import com.cristianatienzapruebafase1.app.entity.Rol;
 import lombok.Data;
 
 @Data
-public class UserDTO implements Serializable{
-  
+public class UserDTO implements Serializable {
+
   private static final long serialVersionUID = -825151165681376137L;
 
   private Long id;
@@ -18,7 +18,7 @@ public class UserDTO implements Serializable{
   private String email;
 
   private Boolean enabled;
-  
+
   private Rol rol;
 
   public UserDTO(Long id, String name, String surname, String email, Boolean enabled, Rol rol) {
@@ -30,4 +30,5 @@ public class UserDTO implements Serializable{
     this.enabled = enabled;
     this.rol = rol;
   }
+
 }

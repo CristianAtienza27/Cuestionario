@@ -5,6 +5,6 @@ import org.springframework.stereotype.Repository;
 import com.cristianatienzapruebafase1.app.entity.Rol;
 
 @Repository
-public interface RolRepository extends JpaRepository<Rol, Long>{
+public interface RolRepository extends JpaRepository<Rol, Long> {
 
 }
