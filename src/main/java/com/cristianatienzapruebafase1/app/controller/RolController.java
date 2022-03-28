@@ -1,6 +1,8 @@
 package com.cristianatienzapruebafase1.app.controller;
 
 import java.util.Optional;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -24,12 +26,16 @@ import com.cristianatienzapruebafase1.app.service.RolService;
 @RequestMapping("/api/roles")
 public class RolController {
 
+  private static final Logger LOGGER = LoggerFactory.getLogger(RolController.class);
+
   @Autowired
   RolService rolService;
 
   @PostMapping
   public ResponseEntity<?> create(@RequestBody Rol rol) {
-    return ResponseEntity.status(HttpStatus.CREATED).body(rolService.save(rol));
+    Rol newRol = rolService.save(rol);
+    LOGGER.info("rol created: " + rol.getName());
+    return ResponseEntity.status(HttpStatus.CREATED).body(newRol);
   }
 
   @GetMapping("/{id}")
@@ -37,11 +43,12 @@ public class RolController {
     Optional<Rol> rol = rolService.findById(rolId);
 
     if (!rolService.findById(rolId).isPresent()) {
+      LOGGER.warn("rol not found");
       return ResponseEntity.notFound().build();
     }
 
     RolDTO rolDTO = rolService.transformRoltoRolDTO(rol.get());
-
+    LOGGER.info("rol retrieved: " + rol.get().getName());
     return ResponseEntity.ok(rolDTO);
   }
 
@@ -49,28 +56,33 @@ public class RolController {
   public ResponseEntity<?> update(@RequestBody Rol rol, @PathVariable(value = "id") Long rolId) {
 
     if (!rolService.findById(rolId).isPresent()) {
+      LOGGER.warn("rol not found");
       return ResponseEntity.notFound().build();
     }
 
     RolDTO rolDTO = rolService.transformRoltoRolDTO(rolService.save(rol));
-
+    LOGGER.info("rol update: " + rolDTO.getName());
     return ResponseEntity.status(HttpStatus.CREATED).body(rolDTO);
   }
 
   @DeleteMapping("/{id}")
   public ResponseEntity<?> delete(@PathVariable(value = "id") Long rolId) {
 
-    if (!rolService.findById(rolId).isPresent()) {
+    Optional<Rol> rol = rolService.findById(rolId);
+
+    if (rol.isPresent()) {
+      LOGGER.warn("rol not found");
       return ResponseEntity.notFound().build();
     }
 
     rolService.delete(rolId);
+    LOGGER.info("rol update: " + rol.get().getName());
     return ResponseEntity.ok().build();
   }
-  
+
   // Read all User OrderByName and Paginate
   @GetMapping
-  public Page<Rol> readAllOrderByName(Pageable pageable){
+  public Page<Rol> readAllOrderByName(Pageable pageable) {
     pageable = PageRequest.of(0, 3, Sort.by("name"));
     return rolService.findAll(pageable);
   }

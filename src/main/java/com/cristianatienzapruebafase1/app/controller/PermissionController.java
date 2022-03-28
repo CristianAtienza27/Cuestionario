@@ -1,6 +1,8 @@
 package com.cristianatienzapruebafase1.app.controller;
 
 import java.util.Optional;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -24,12 +26,16 @@ import com.cristianatienzapruebafase1.app.service.PermissionService;
 @RequestMapping("/api/permissions")
 public class PermissionController {
 
+  private static final Logger LOGGER = LoggerFactory.getLogger(PermissionController.class);
+
   @Autowired
   PermissionService permissionService;
 
   @PostMapping
   public ResponseEntity<?> create(@RequestBody Permission permission) {
-    return ResponseEntity.status(HttpStatus.CREATED).body(permissionService.save(permission));
+    Permission newPermission = permissionService.save(permission);
+    LOGGER.info("permission created: " + newPermission.getTitle());
+    return ResponseEntity.status(HttpStatus.CREATED).body(newPermission);
   }
 
   @GetMapping("/{id}")
@@ -37,8 +43,11 @@ public class PermissionController {
     Optional<Permission> permission = permissionService.findById(permissionId);
 
     if (!permission.isPresent()) {
+      LOGGER.warn("permission not found");
       return ResponseEntity.notFound().build();
     }
+
+    LOGGER.info("permission retrieved: " + permission.get().getTitle());
 
     return ResponseEntity
         .ok(permissionService.transformPermissionToPermissionDTO(permission.get()));
@@ -49,28 +58,33 @@ public class PermissionController {
       @PathVariable(value = "id") Long permissionId) {
 
     if (!permissionService.findById(permissionId).isPresent()) {
+      LOGGER.warn("permission not found");
       return ResponseEntity.notFound().build();
     }
 
     PermissionDTO permissionDTO =
         permissionService.transformPermissionToPermissionDTO(permissionService.save(permission));
-
+    LOGGER.info("permission updated: " + permissionDTO.getTitle());
     return ResponseEntity.status(HttpStatus.CREATED).body(permissionDTO);
   }
-  
+
   @DeleteMapping("/{id}")
   public ResponseEntity<?> delete(@PathVariable(value = "id") Long permissionId) {
 
-    if (!permissionService.findById(permissionId).isPresent()) {
+    Optional<Permission> permission = permissionService.findById(permissionId);
+
+    if (permission.isPresent()) {
+      LOGGER.warn("permission not found");
       return ResponseEntity.notFound().build();
     }
 
     permissionService.delete(permissionId);
+    LOGGER.warn("permission deleted: " + permission.get().getTitle());
     return ResponseEntity.ok().build();
   }
-  
+
   @GetMapping
-  public Page<Permission> readAllOrderByName(Pageable pageable){
+  public Page<Permission> readAllOrderByName(Pageable pageable) {
     pageable = PageRequest.of(0, 3, Sort.by("title"));
     return permissionService.findAll(pageable);
   }
