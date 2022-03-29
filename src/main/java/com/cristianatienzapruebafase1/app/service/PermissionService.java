@@ -5,7 +5,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import com.cristianatienzapruebafase1.app.dto.PermissionDTO;
 import com.cristianatienzapruebafase1.app.entity.Permission;
-import com.cristianatienzapruebafase1.app.entity.Rol;
 
 public interface PermissionService {
   public Permission transformPermissionDTOtoPermission(PermissionDTO permissionDTO);
