@@ -1,0 +1,31 @@
+spring:
+  profiles.active: development
+
+---
+spring:
+  profiles: development
+datasource:
+      url: jdbc:mysql://localhost:3306/db_cristianalten
+      username: root
+      password: 1234
+      driver-class-name: com.mysql.cj.jdbc.Driver
+jpa:
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    show-sql: true
+    hibernate:
+      ddl-auto: create-drop
+---
+
+spring:
+  profiles: test
+datasource:
+      url: jdbc:mysql://localhost:3306/db_cristianalten1
+      username: root
+      password: 1234
+      driver-class-name: com.mysql.cj.jdbc.Driver
+jpa:
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    show-sql: true
+    hibernate:
+      ddl-auto: create-drop
+
