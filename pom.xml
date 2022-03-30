@@ -10,7 +10,6 @@
 	</parent>
 	<groupId>com.CristianAtienzaPruebaFase1</groupId>
 	<artifactId>PruebaFase-1</artifactId>
-	<packaging>pom</packaging>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>demo</name>
@@ -79,8 +78,6 @@
 		</dependency>
 
 	</dependencies>
-<<<<<<< Updated upstream
-
 	<build>
 		<plugins>
 			<plugin>
@@ -94,12 +91,7 @@
 		</plugins>
 	</build>
 	<modules>
-		<module>eie</module>
-		<module>parent</module>
-=======
-	<modules>
 		<module>core</module>
 		<module>rest</module>
->>>>>>> Stashed changes
 	</modules>
 </project>
