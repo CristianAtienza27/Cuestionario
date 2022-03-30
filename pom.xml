@@ -12,6 +12,7 @@
 	<artifactId>PruebaFase-1</artifactId>
 	<packaging>pom</packaging>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
 	<name>demo</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
@@ -78,6 +79,7 @@
 		</dependency>
 
 	</dependencies>
+<<<<<<< Updated upstream
 
 	<build>
 		<plugins>
@@ -94,5 +96,10 @@
 	<modules>
 		<module>eie</module>
 		<module>parent</module>
+=======
+	<modules>
+		<module>core</module>
+		<module>rest</module>
+>>>>>>> Stashed changes
 	</modules>
 </project>
