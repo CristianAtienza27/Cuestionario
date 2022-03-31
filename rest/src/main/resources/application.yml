@@ -1,9 +1,13 @@
 spring:
-  profiles.active: development
+  profiles.active: test
 
 ---
 spring:
-  profiles: development
+  profile: development
+
+application:
+      name: rest
+      
 datasource:
       url: jdbc:mysql://localhost:3306/db_cristianalten
       username: root
@@ -13,11 +17,26 @@ jpa:
     database-platform: org.hibernate.dialect.MySQL8Dialect
     show-sql: true
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: create
+      
+flyway:
+    enabled: true
+    validate-on-migrate: true
+    baselineOnMigrate: true
+      
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: debug
 ---
 
 spring:
-  profiles: test
+  profile: test
+  
+application:
+      name: rest
+      
 datasource:
       url: jdbc:mysql://localhost:3306/db_cristianalten1
       username: root
@@ -27,5 +46,15 @@ jpa:
     database-platform: org.hibernate.dialect.MySQL8Dialect
     show-sql: true
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: create
 
+flyway:
+    enabled: true
+    validate-on-migrate: true
+    baselineOnMigrate: true
+      
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: debug
