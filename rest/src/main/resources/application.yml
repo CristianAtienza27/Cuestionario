@@ -1,0 +1,68 @@
+spring:
+  profiles.active: test
+
+---
+spring:
+  profile: development
+
+application:
+      name: rest
+      
+datasource:
+      url: jdbc:mysql://localhost:3306/db_cristianalten
+      username: root
+      password: 1234
+      driver-class-name: com.mysql.cj.jdbc.Driver
+jpa:
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    show-sql: true
+    hibernate:
+      ddl-auto: create
+      
+flyway:
+    enabled: true
+    validate-on-migrate: true
+    baselineOnMigrate: true
+    
+mvc:
+    pathmatch:
+          matching-strategy: ant_path_matcher
+      
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: debug
+---
+
+spring:
+  profile: test
+  
+application:
+      name: rest
+      
+datasource:
+      url: jdbc:mysql://localhost:3306/db_cristianalten1
+      username: root
+      password: 1234
+      driver-class-name: com.mysql.cj.jdbc.Driver
+jpa:
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    show-sql: true
+    hibernate:
+      ddl-auto: create
+
+flyway:
+    enabled: true
+    validate-on-migrate: true
+    baselineOnMigrate: true
+    
+mvc:
+    pathmatch:
+          matching-strategy: ant_path_matcher
+      
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: debug

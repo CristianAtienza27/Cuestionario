@@ -13,6 +13,8 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
+// EJERCICIO 7.4
+
 @Entity
 @Table(name = "permissions")
 @Data

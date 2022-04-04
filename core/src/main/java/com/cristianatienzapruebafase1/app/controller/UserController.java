@@ -35,6 +35,9 @@ public class UserController {
   public ResponseEntity<?> create(@RequestBody User user) {
 
     User newUser = userService.save(user);
+    
+    //EJERCICIO 9.1
+    
     LOGGER.info("user created: " + newUser.getName() + ' ' + newUser.getSurname());
 
     return ResponseEntity.status(HttpStatus.CREATED).body(user);
@@ -43,6 +46,9 @@ public class UserController {
   // Read an User
   @GetMapping("/{id}")
   public ResponseEntity<?> read(@PathVariable(value = "id") Long userId) {
+    
+    //EJERCICIO 9.2
+    
     Optional<User> oUser = Optional.ofNullable(userService.findById(userId)
         .orElseThrow(() -> new ResourceNotFoundException("User not found with id: " + userId)));
 
@@ -101,6 +107,14 @@ public class UserController {
 
     return ResponseEntity.ok().build();
   }
+  
+// EJERCICIO 2.2 
+//Read all User OrderByName and Paginate
+//  @GetMapping
+//  public Page<User> readAllOrderByName(Pageable pageable){
+//    pageable = PageRequest.of(0, 3, Sort.by("name"));
+//    return userService.findAll(pageable);
+//   }
 
   // Read all Users
   @GetMapping

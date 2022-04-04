@@ -17,6 +17,8 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
+// EJERCICIO 7.1
+
 @Entity
 @Table(name = "roles")
 @Data
@@ -30,6 +32,8 @@ public class Rol implements Serializable {
 
   @Column(length = 50)
   private String name;
+  
+  // EJERCICIO 7.6
 
   @ManyToMany(fetch=FetchType.EAGER)
   @JoinTable(name = "rol_permissions", joinColumns = @JoinColumn(name = "rol_id"),

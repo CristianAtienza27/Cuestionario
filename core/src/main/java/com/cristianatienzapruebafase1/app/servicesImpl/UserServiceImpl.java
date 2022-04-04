@@ -22,6 +22,7 @@ public class UserServiceImpl implements UserService {
   @Autowired
   private UserRepository userRepository;
 
+  // EJERCICIO 6.3
   @Override
   public User transformUserDTOtoUser(UserDTO userDTO) {
     return new ModelMapper().map(userDTO, User.class);
@@ -59,6 +60,39 @@ public class UserServiceImpl implements UserService {
   public Optional<User> findById(Long id) {
     return userRepository.findById(id);
   }
+  
+  //EJERCICIO 6.1
+  
+  // Read an User and return UserDTO
+//@GetMapping("/{id}")
+//public ResponseEntity<?> read(@PathVariable(value="id") Long userId){
+//  
+// Optional<User> user = userService.findById(userId);
+// 
+// if (!user.isPresent()) {
+//   return ResponseEntity.notFound().build();
+// }
+// 
+// return ResponseEntity.ok(userService.transformUsertoUserDTO(user.get()));
+//}
+  
+  //EJERCICIO 6.2
+  
+//Read an User and return UserNameDTO
+//  @GetMapping("/{id}")
+//  public ResponseEntity<?> read(@PathVariable(value="id") Long userId){
+//    
+//   Optional<User> user = userService.findById(userId);
+//   
+//   if (!user.isPresent()) {
+//     return ResponseEntity.notFound().build();
+//   }
+//   
+//   UserNameDTO userNameDTO = userService.transformUserNametoUserNameDTO(user.get());
+//   userNameDTO.setFullname(user.get().getName() + ' ' + user.get().getSurname());
+//   
+//   return ResponseEntity.ok(userNameDTO);
+//  }
 
   @Override
   @Transactional
@@ -71,7 +105,27 @@ public class UserServiceImpl implements UserService {
   public void delete(Long id) {
     userRepository.deleteById(id);
   }
+  
+//      EJERCICIO 2.1
+  
+//  @Override
+//  @Transactional(readOnly = true)
+//  public Iterable<User> findByEnabledFilterByName(User user) {
+//    return userRepository.findByEnabled(true).stream().filter(us -> us.getName() == user.getName())
+//        .collect(Collectors.toList());
+//  }
+  
+//      EJERCICIO 2.2
+  
+//Read all User OrderByName and Paginate
+//  @GetMapping
+//  public Page<User> readAllOrderByName(Pageable pageable) {
+//    pageable = PageRequest.of(0, 3, Sort.by("name"));
+//    return userService.findAll(pageable);
+//  }
 
+  // EJERCICIO 7.7
+  
   @Override
   public Iterable<User> findAllWithRolWithoutPermissions() {
     return userRepository.findAll().stream()

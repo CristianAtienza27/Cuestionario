@@ -11,6 +11,8 @@ import com.cristianatienzapruebafase1.app.entity.Permission;
 import com.cristianatienzapruebafase1.app.repository.PermissionRepository;
 import com.cristianatienzapruebafase1.app.service.PermissionService;
 
+// EJERCICIO 7.5
+
 @Service
 public class PermissionServiceImpl implements PermissionService{
   

@@ -31,6 +31,8 @@ public class User implements Serializable {
   private String email;
 
   private Boolean enabled;
+  
+  // EJERCICIO 7.3
 
   @ManyToOne
   @JoinColumn(name = "rol")

@@ -12,6 +12,7 @@ import com.cristianatienzapruebafase1.app.entity.Rol;
 import com.cristianatienzapruebafase1.app.repository.RolRepository;
 import com.cristianatienzapruebafase1.app.service.RolService;
 
+// EJERCICIO 7.2
 @Service
 public class RolServiceImpl implements RolService{
   
