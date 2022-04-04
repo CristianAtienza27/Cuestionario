@@ -7,6 +7,6 @@ import com.cristianatienzapruebafase1.app.entity.User;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
-  public List<User> findByEnabled();
+  public List<User> findByEnabled(Boolean isEnabled);
   
 }

@@ -1,10 +1,11 @@
 package com.cristianatienzapruebafase1.app.controller;
 
-import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -76,11 +77,10 @@ public class UserController {
     return ResponseEntity.ok().build();
   }
 
-  // Read all Users
-  @GetMapping
-  public List<User> readAll() {
-
-    return StreamSupport.stream(userService.findAll().spliterator(), false)
-        .collect(Collectors.toList());
-  }
+//Read all User OrderByName and Paginate
+ @GetMapping
+ public Page<User> readAllOrderByName(Pageable pageable){
+   pageable = PageRequest.of(0, 3, Sort.by("name"));
+   return userService.findAll(pageable);
+   }
 }

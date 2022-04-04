@@ -49,9 +49,8 @@ public class UserServiceImpl implements UserService {
   @Override
   @Transactional(readOnly = true)
   public Iterable<User> findByEnabledFilterByName(User user) {
-    return userRepository.findByEnabled().stream().filter(us -> us.getName() == user.getName())
+    return userRepository.findByEnabled(true).stream().filter(us -> us.getName() == user.getName())
         .collect(Collectors.toList());
   }
-
 
 }
